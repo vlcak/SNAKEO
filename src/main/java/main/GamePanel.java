@@ -94,6 +94,10 @@ public class GamePanel extends JPanel implements Runnable{
     public void checkForCollision(){
         if(head.getX() == enemy.getX() && head.getY() == enemy.getY()){
             bodies.add(new Body(enemy.getX(), enemy.getY()));
+            enemy.setDefaultValues();
+            score++;
+            bodycount++;
+            System.out.printf("Kolize: %d\n", bodies.size());
         }
         if(head.getX() + tileSize > width){
             head.setX(head.getX() - head.getTileSize());
