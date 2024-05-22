@@ -6,9 +6,19 @@ public class Body {
     int y;
     int width = tileSize;
     int height = tileSize;
+
+    public Body(){
+        setDefaultValues();
+    }
+
     public Body(int x, int y){
         this.x = x;
         this.y = y;
+    }
+
+    public void setDefaultValues(){
+        x = 0;
+        y = 0;
     }
 
     public int getX() {

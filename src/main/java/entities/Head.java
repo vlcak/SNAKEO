@@ -1,6 +1,5 @@
 package entities;
 
-import main.GameFrame;
 import main.GamePanel;
 import main.KeyReader;
 
@@ -9,14 +8,12 @@ public class Head extends Body {
 
     KeyReader keyReader = new KeyReader();
 
-    public void setTileSize(int tileSize) {
-        this.tileSize = tileSize;
-    }
-
     public Head(KeyReader keyReader){
         this.keyReader = keyReader;
         setDefaultValues();
     }
+
+    @Override
     public void setDefaultValues(){
         x = 2 * tileSize;
         y = 2 * tileSize;
