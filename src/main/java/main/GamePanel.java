@@ -87,7 +87,6 @@ public class GamePanel extends JPanel implements Runnable{
         int previsousY = head.getY();
         int tempX = 0, tempY = 0;
         for (Body body:bodies){
-            System.out.printf("X: %d, Y: %d\n", body.getX(), body.getY());
             tempX = body.getX();
             tempY = body.getY();
             body.setX(previsousX);
@@ -95,7 +94,6 @@ public class GamePanel extends JPanel implements Runnable{
             previsousX = tempX;
             previsousY = tempY;
         }
-        System.out.println("Done");
     }
     public void checkForCollision(){
         if(head.getX() == enemy.getX() && head.getY() == enemy.getY()){
@@ -103,7 +101,6 @@ public class GamePanel extends JPanel implements Runnable{
             enemy.setDefaultValues();
             score++;
             bodycount++;
-            System.out.printf("Kolize: %d\n", bodies.size());
         }
         if(head.getX() + tileSize > width){
             head.setX(head.getX() - head.getTileSize());
