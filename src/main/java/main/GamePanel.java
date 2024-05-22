@@ -84,47 +84,16 @@ public class GamePanel extends JPanel implements Runnable{
 
     }
     public void followHead(){
+        Body previsousBody = head;
         for (Body body:bodies){
-            if(keyReader.upPressed == true){
-                body.setY(body.getY()-tileSize);
-            }
-            if(keyReader.downPressed == true){
-                body.setY(body.getY()+tileSize);
-            }
-            if(keyReader.leftPressed == true){
-                body.setX(body.getX() - tileSize);
-            }
-            if(keyReader.rightPressed == true){
-                body.setX(body.getX() + tileSize);
-            }
+            body.setX(previsousBody.getX());
+            body.setY(previsousBody.getY());
+            previsousBody = body;
         }
     }
     public void checkForCollision(){
         if(head.getX() == enemy.getX() && head.getY() == enemy.getY()){
-            if(keyReader.upPressed == true){
-                bodies.add(new Body(enemy.getX(),enemy.getY()+bodycount * tileSize));
-                enemy.setDefaultValues();
-                score++;
-                bodycount++;
-            }
-            if(keyReader.downPressed == true){
-                bodies.add(new Body(enemy.getX(),enemy.getY()-bodycount * tileSize));
-                enemy.setDefaultValues();
-                score++;
-                bodycount++;
-            }
-            if(keyReader.leftPressed == true){
-                bodies.add(new Body(enemy.getX()+bodycount * tileSize,enemy.getY()));
-                enemy.setDefaultValues();
-                score++;
-                bodycount++;
-            }
-            if(keyReader.rightPressed == true){
-                bodies.add(new Body(enemy.getX()-bodycount * tileSize,enemy.getY()));
-                enemy.setDefaultValues();
-                score++;
-                bodycount++;
-            }
+            bodies.add(new Body(enemy.getX(), enemy.getY()));
         }
         if(head.getX() + tileSize > width){
             head.setX(head.getX() - head.getTileSize());
