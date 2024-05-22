@@ -28,7 +28,6 @@ public class KeyReader implements KeyListener {
         else if(e.getKeyCode() == KeyEvent.VK_SPACE){
             startGame = true;
         }
-
     }
 
     @Override
@@ -45,5 +44,9 @@ public class KeyReader implements KeyListener {
         else if(e.getKeyCode() == KeyEvent.VK_D){
             rightPressed = false;
         }
+    }
+
+    public boolean wasAction(){
+        return upPressed || downPressed || leftPressed || rightPressed;
     }
 }

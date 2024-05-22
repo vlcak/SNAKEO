@@ -6,7 +6,6 @@ import entities.Head;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -63,10 +62,10 @@ public class GamePanel extends JPanel implements Runnable{
 
     }
     public void update(){
-        if(gameState == 2){
+        if(gameState == 2 && keyReader.wasAction()){
+            followHead();
             head.update();
             checkForCollision();
-            followHead();
         }
         else if(keyReader.startGame == true){
             gameState = 2;
@@ -84,12 +83,19 @@ public class GamePanel extends JPanel implements Runnable{
 
     }
     public void followHead(){
-        Body previsousBody = head;
+        int previsousX = head.getX();
+        int previsousY = head.getY();
+        int tempX = 0, tempY = 0;
         for (Body body:bodies){
-            body.setX(previsousBody.getX());
-            body.setY(previsousBody.getY());
-            previsousBody = body;
+            System.out.printf("X: %d, Y: %d\n", body.getX(), body.getY());
+            tempX = body.getX();
+            tempY = body.getY();
+            body.setX(previsousX);
+            body.setY(previsousY);
+            previsousX = tempX;
+            previsousY = tempY;
         }
+        System.out.println("Done");
     }
     public void checkForCollision(){
         if(head.getX() == enemy.getX() && head.getY() == enemy.getY()){
